@@ -24,11 +24,9 @@ class PaletteList extends Component{
                 <MiniPalette/>
 
                 {palettes.map( palette => (
-                    <p>
-                        <Link exact to = {`/palette/${palette.id}`}>
-                            {palette.paletteName}
-                        </Link>
-                    </p>
+                    <div>
+                        <MiniPalette {...palette}/>
+                        </div>
                     
                 ))}
             </div>
