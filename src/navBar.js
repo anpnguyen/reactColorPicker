@@ -78,8 +78,9 @@ class NavBar extends Component{
                     <IconButton 
                         color="white" 
                         aria-label= "close"
-                        key =" close">
-                        <CloseIcon onClick={this.closeSnackbar}/>
+                        key =" close"
+                        onClick= {this.closeSnackbar}>
+                        <CloseIcon />
                     </IconButton>]}
                 onClose={this.closeSnackbar}
 
