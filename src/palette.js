@@ -3,7 +3,6 @@ import ColorBox from './colorBox'
 
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
-
 import './palette.css'
 
 class Palette extends Component{
@@ -32,6 +31,7 @@ class Palette extends Component{
 
         return(
             <div className="Palette">
+                <div className="slider">
                 <Slider 
                     defaultValue= {level} 
                     min={100} 
@@ -39,6 +39,7 @@ class Palette extends Component{
                     onAfterChange= {this.changeLevel}
                     step = {100}
                     />
+                </div>
                 <div className="Palette-colors">
                      
                     {ColorBoxes}   
