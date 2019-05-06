@@ -7,6 +7,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Snackbar from '@material-ui/core/Snackbar';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
+import {Link} from 'react-router-dom';
 
 
 
@@ -41,7 +42,7 @@ class NavBar extends Component{
             <header className="NavBar"> 
             
                 <div className="logo">
-                    <a >LOGO</a>
+                    <Link exact to="/">ReactColorPicker</Link>
                 </div>
                  
                 <div className="slider-container">
