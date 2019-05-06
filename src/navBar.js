@@ -4,6 +4,9 @@ import 'rc-slider/assets/index.css';
 import './navBar.css'
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import Snackbar from '@material-ui/core/Snackbar';
+import CloseIcon from '@material-ui/icons/Close';
+import IconButton from '@material-ui/core/IconButton';
 
 
 
@@ -12,16 +15,21 @@ class NavBar extends Component{
     constructor(props){
         super(props);
         this.state= {
-            format: 'hex'
+            format: 'hex',
+            open: false
         }
-        this.handleChange = this.handleChange.bind(this)
+        this.handleFormatChange = this.handleFormatChange.bind(this)
+        this.closeSnackbar = this.closeSnackbar.bind(this)
     }
 
-    handleChange(e){
-        this.setState({format: e.target.value})
+    handleFormatChange(e){
+        this.setState({format: e.target.value, open: true})
         this.props.changeFormat(e.target.value)
     }
 
+    closeSnackbar(){
+        this.setState({open: false})
+    }
     
 
     render(){
@@ -49,7 +57,7 @@ class NavBar extends Component{
                     </div>
                 </div>
                 <div className="select-container">
-                    <Select onChange={this.handleChange} value={format}>
+                    <Select onChange={this.handleFormatChange} value={format}>
                         <MenuItem value="hex">Hex - #ffffff</MenuItem>
                         <MenuItem value="rgb">RGB - rgb(255,255,255)</MenuItem>
                         <MenuItem value="rgba">RGB - rgba(255,255,255,1.0)</MenuItem>
@@ -58,7 +66,24 @@ class NavBar extends Component{
 
                 </div>
 
+                <Snackbar 
+                anchorOrigin={{vertical: "bottom", horizontal:"left"}}
+                open={this.state.open}
+                autoHideDuration= {3000}
+                message={<span>Format Changed to {format.toUpperCase()}!</span>} 
+                ContentProps={{
+                    "aria-describedby": "message-id"
+                }}
+                action={[
+                    <IconButton 
+                        color="white" 
+                        aria-label= "close"
+                        key =" close">
+                        <CloseIcon onClick={this.closeSnackbar}/>
+                    </IconButton>]}
+                onClose={this.closeSnackbar}
 
+                />
                 
             </header>
 
