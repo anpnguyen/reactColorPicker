@@ -10,15 +10,30 @@ import './App.css';
 
 class App extends Component{
 
+  findPalette(id){
+    return seedColors.find((palette)=>{
+      return palette.id === id
+    })
+  }
+
   render(){
-    console.log(generatePalette(seedColors[4]))
+    // console.log(generatePalette(seedColors[4]))
 
     return(
       // <Palette palette= {generatePalette(seedColors[4])}/>
       
       <Switch>
-        <Route exact to='/' render={()=> <h1>palette list here</h1>}/>
-        <Route exact to='/palette/:id' render={()=> <h1>palette  here</h1>}/>
+        <Route exact path='/' render={()=> <h1>palette list here</h1>}/>
+        <Route 
+          exact 
+          path='/palette/:id' 
+          render={routeProps=> ( 
+            <Palette palette={generatePalette(
+              this.findPalette(routeProps.match.params.id)
+            )}
+            />
+          )} 
+        />
       </Switch>
     
       )
