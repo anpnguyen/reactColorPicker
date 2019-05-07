@@ -42,6 +42,29 @@
     opacity: 0
 }
 
+.back-button:visited {
+    
+    text-decoration: none
+}
+
+.light-text{
+    color:white
+}
+
+.dark-text{
+    color:black
+}
+
+
+.ColorBox .light-text {
+    color:white
+}
+
+.ColorBox  .dark-text{
+    color:black
+}
+
+
 .ColorBox:hover .copy-button{
     opacity: 1;
     transition: 0.5s;
