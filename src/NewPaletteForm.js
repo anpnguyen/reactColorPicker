@@ -18,6 +18,8 @@ import Button from '@material-ui/core/Button';
 import DraggableColorBox from './draggableColorBox'
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 // import { blue } from '@material-ui/core/colors';
+import DraggableColorList from './DraggableColorList'
+import arrayMove from 'array-move';
 
 
 const drawerWidth = 400;
@@ -94,9 +96,16 @@ class NewPaletteForm extends Component {
   this.addNewColor = this.addNewColor.bind(this)
   this.handleChange = this.handleChange.bind(this)
   this.handleSubmit = this.handleSubmit.bind(this)
+  this.deleteColor = this.deleteColor.bind(this)
   }
 
-     
+  onSortEnd = ({oldIndex, newIndex}) => {
+    this.setState(({colors}) => ({
+      colors: arrayMove(colors, oldIndex, newIndex),
+    }))
+  };
+  
+
   componentDidMount() {
     // custom rule will have name 'isPasswordMatch'
     ValidatorForm.addValidationRule('isColorNameUnique', (value) => {
@@ -164,7 +173,7 @@ class NewPaletteForm extends Component {
     )
 
   }
-
+  
  
 
 
@@ -271,14 +280,13 @@ class NewPaletteForm extends Component {
         >
           <div className={classes.drawerHeader} />
 
-          
-            {this.state.colors.map(color => (
-              <DraggableColorBox 
-                key= {color.name}
-                color={color.color} 
-                name={color.name}
-                handleClick= {()=> this.deleteColor(color.name)}/>
-            ))}
+            <DraggableColorList 
+              colors={this.state.colors}
+              deleteColor = {this.deleteColor}
+              axis = "xy"
+              onSortEnd = {this.onSortEnd}
+            />
+            
           
           
         </main>
