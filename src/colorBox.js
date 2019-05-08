@@ -2,7 +2,7 @@ import React, {Component } from 'react';
 // import './colorBox.css'
 import {CopyToClipboard} from 'react-copy-to-clipboard'
 import {Link} from 'react-router-dom'
-import chroma from 'chroma-js'
+// import chroma from 'chroma-js'
 import {withStyles} from "@material-ui/styles"
 import styles from "./styles/colorBoxStyles"
 
@@ -26,9 +26,9 @@ class ColorBox extends Component{
     }
     
     render(){
-        const {name, background, paletteId, colorId, id, classes, showFullPalette} = this.props
+        const {name, background, paletteId, colorId, classes, showFullPalette} = this.props
         const copied = this.state.copied
-        const isDark = (chroma(background).luminance() <= 0.5)
+        // const isDark = (chroma(background).luminance() <= 0.5)
         
 
 
