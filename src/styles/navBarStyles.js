@@ -1,3 +1,5 @@
+import sizes from './sizes'
+
 export default {
 
     NavBar :{
@@ -19,6 +21,9 @@ export default {
         "& a" : {
             textDecoration: 'none',
             color: 'black'
+        },
+        [sizes.down("xs")]:{
+            display: "none"
         }
     },
     
@@ -43,6 +48,9 @@ export default {
         } ,
         "& .rc-slider-track" :{
             backgroundColor: "transparent"
+        },
+        [sizes.down("md")]:{
+            width: "200px"
         }
     },
 
