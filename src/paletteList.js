@@ -23,7 +23,7 @@ class PaletteList extends Component{
     }
  
     render(){
-        const {palettes, classes} = this.props
+        const {palettes, classes, deletePalette} = this.props
         
 
 
@@ -43,7 +43,10 @@ class PaletteList extends Component{
                              
                             <MiniPalette 
                                 {...palette}
-                                handleClick={()=> this.gotoPalette(palette.id)}/>
+                                handleClick={()=> this.gotoPalette(palette.id)}
+                                deletePalette = {deletePalette}
+                                key = {palette.id}
+                                id = {palette.id}/>
                             
                          </div>
                         ))}
