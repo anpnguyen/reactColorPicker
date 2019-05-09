@@ -21,6 +21,7 @@ import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import DraggableColorList from './DraggableColorList'
 import arrayMove from 'array-move';
 import PaletteFormNav from './PaletteFormNav'
+import ColorPickerForm from './colorPickerForm'
 
 
 const drawerWidth = 400;
@@ -97,7 +98,7 @@ class NewPaletteForm extends Component {
         newColorName: "",
         newPaletteName: ""
     };
-  this.updateCurrentColor = this.updateCurrentColor.bind(this)
+  // this.updateCurrentColor = this.updateCurrentColor.bind(this)
   this.addNewColor = this.addNewColor.bind(this)
   this.handleChange = this.handleChange.bind(this)
   this.handleSubmit = this.handleSubmit.bind(this)
@@ -125,55 +126,47 @@ class NewPaletteForm extends Component {
     this.setState({colors: []})
   }
 
-  componentDidMount() {
-    // custom rule will have name 'isPasswordMatch'
-    ValidatorForm.addValidationRule('isColorNameUnique', (value) => {
-      let obj = this.state.colors.find( object => object.name.toLowerCase() === value.toLowerCase())
-      return (!obj?  true:  false)
-    })
+  // componentDidMount() {
+    
+  //   ValidatorForm.addValidationRule('isColorNameUnique', (value) => {
+  //     let obj = this.state.colors.find( object => object.name.toLowerCase() === value.toLowerCase())
+  //     return (!obj?  true:  false)
+  //   })
 
-    ValidatorForm.addValidationRule('isColorUnique', (value) => {
-      let obj = this.state.colors.find( object => object.color.toLowerCase() === this.state.currentColor.toLowerCase())
-      return (!obj?  true:  false)
-    })
+  //   ValidatorForm.addValidationRule('isColorUnique', (value) => {
+  //     let obj = this.state.colors.find( object => object.color.toLowerCase() === this.state.currentColor.toLowerCase())
+  //     return (!obj?  true:  false)
+  //   })
 
-    ValidatorForm.addValidationRule('isPaletteNameUnique', (value) => {
-      let obj = this.props.palette.find( palette => palette.id.toLowerCase() === this.state.newPaletteName.toLowerCase())
-      return (!obj?  true:  false)
-    })
+  //   // ValidatorForm.addValidationRule('isPaletteNameUnique', (value) => {
+  //   //   let obj = this.props.palette.find( palette => palette.id.toLowerCase() === this.state.newPaletteName.toLowerCase())
+  //   //   return (!obj?  true:  false)
+  //   // })
 
-  }
+  // }
 
-
-
+// ==========================
+// handle Change on forms
+// ==========================
 
   handleChange(evt){
     
     this.setState({ [evt.target.name]: evt.target.value})
     
   }
-
-  addNewColor(){
-    const newColor = {color: this.state.currentColor, name: this.state.newColorName }
-
-    this.setState({colors: [...this.state.colors, newColor], newColorName: ""})
+// ==========================
+  // ColorPicker
+// ==========================
+  addNewColor(newColorObject){
+    this.setState({colors: [...this.state.colors, newColorObject], newColorName: ""})
   }
 
 
-  updateCurrentColor(newColor){
-    console.log(newColor)
-    this.setState({currentColor: newColor.hex})
-  }
+  // updateCurrentColor(newColor){
+  //   this.setState({currentColor: newColor.hex})
+  // }
 
-  handleDrawerOpen = () => {
-    this.setState({ open: true });
-  };
-
-  handleDrawerClose = () => {
-    this.setState({ open: false });
-  };
-
- handleSubmit(newPaletteName){
+  handleSubmit(newPaletteName){
     const newPallete = {
       paletteName: newPaletteName,
       id: newPaletteName.toLowerCase().replace(/ /g, "-"),
@@ -190,6 +183,19 @@ class NewPaletteForm extends Component {
     )
 
   }
+// ==========================
+// Drawer
+// ==========================
+
+  handleDrawerOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleDrawerClose = () => {
+    this.setState({ open: false });
+  };
+
+ 
   
  
 
@@ -197,7 +203,7 @@ class NewPaletteForm extends Component {
 
   render() {
     const { classes, theme, palette } = this.props;
-    const { open } = this.state;
+    const { open , currentColor, colors} = this.state;
     const paletteIsFull = this.state.colors.length >= this.props.maxColors
 
     return (
@@ -243,27 +249,15 @@ class NewPaletteForm extends Component {
             <Button variant="contained" color="secondary" onClick={this.clearColors}> Clear Palette </Button>
             <Button variant="contained" color="primary" onClick={this.addRandomColor} disabled= {paletteIsFull}> Random Color </Button>
           </div>
-            <ChromePicker color={this.state.currentColor} onChangeComplete={this.updateCurrentColor}/>
-            
 
-            <ValidatorForm onSubmit= {this.addNewColor}>
-              <Button 
-                variant="contained" 
-                color="default" 
-                style={{background: this.state.currentColor}}
-                // onClick={this.addNewColor}
-                type= "submit"
-                disabled= {paletteIsFull}
-                > {paletteIsFull? "palette full": "add Color"}
-              </Button>
-              <TextValidator 
-                name= "newColorName"
-                value = {this.state.newColorName}
-                onChange = {this.handleChange}
-                validators={["required", "isColorNameUnique",'isColorUnique' ]}
-                errorMessages={['this field is required', "Please add unique color name", "color already used" ]}
-                 />
-            </ValidatorForm>
+
+
+            <ColorPickerForm 
+              paletteIsFull = {paletteIsFull}
+              currentColor = {currentColor}
+              addNewColor = {this.addNewColor}
+              updateCurrentColor= {this.updateCurrentColor}
+              colors = {colors}/>
           
         </Drawer>
         <main
