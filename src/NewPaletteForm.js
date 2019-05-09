@@ -210,7 +210,7 @@ class NewPaletteForm extends Component {
       <div className={classes.root}>
         
         <PaletteFormNav 
-          classes={classes} 
+          // classes={classes} 
           open={open} 
           handleSubmit={this.handleSubmit} 
           palette={palette}
