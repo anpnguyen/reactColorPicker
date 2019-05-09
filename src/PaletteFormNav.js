@@ -82,6 +82,7 @@ class PaletteFormNav extends Component{
     }
 
     handleChange(evt){
+        // evt.preventDefault()
        
         this.setState({ [evt.target.name]: evt.target.value})
         
