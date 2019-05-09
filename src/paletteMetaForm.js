@@ -24,6 +24,8 @@ import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 // import DraggableColorList from './DraggableColorList'
 // import arrayMove from 'array-move';
 import {Link} from 'react-router-dom'
+import {Picker} from 'emoji-mart'
+import 'emoji-mart/css/emoji-mart.css'
 
 
 class PaletteMetaForm extends Component {
@@ -62,13 +64,13 @@ class PaletteMetaForm extends Component {
   }
 
   render() {
-        const {palette} = this.props
+        const {palette, hideForm} = this.props
         const {newPaletteName} = this.state
     return (
      
         <Dialog
           open={this.state.open}
-          onClose={this.handleClose}
+          onClose={hideForm}
           aria-labelledby="form-dialog-title"
         >
             
@@ -82,12 +84,7 @@ class PaletteMetaForm extends Component {
                 </DialogContentText>
                     
                     
-                <Button
-                    variant="contained"
-                    color="primary"
-                    type="submit"
-                    >Save Palette
-                </Button>
+                
                         
                     <TextValidator 
                         name = "newPaletteName"
@@ -98,21 +95,26 @@ class PaletteMetaForm extends Component {
                         errorMessages={['this field is required' , "unique plate" ]}
                         fullWidth
                         margin ="normal"
-                        />
+                    />
                     
             </DialogContent>
           
 
           <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
+            <Button onClick={hideForm} color="primary">
               Cancel
             </Button>
-            <Button onClick={this.handleClose} color="primary">
-              Subscribe
+            <Button
+                variant="contained"
+                color="primary"
+                type="submit"
+                >Save Palette
             </Button>
           </DialogActions>
 
           </ValidatorForm>
+
+          <Picker/>
           
         </Dialog>
       
