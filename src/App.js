@@ -14,8 +14,11 @@ import './App.css';
 class App extends Component{
   constructor(props){
     super(props);
+
+    const savedPalettes = JSON.parse(window.localStorage.getItem("palettes"))
+
     this.state = {
-      palette: seedColors
+      palette: savedPalettes || seedColors
     };
     this.savePalette = this.savePalette.bind(this)
     this.findPalette = this.findPalette.bind(this)
@@ -29,8 +32,18 @@ class App extends Component{
   }
 
   savePalette(newPalette){
-    console.log (newPalette)
-    this.setState({palette: [...this.state.palette, newPalette]})
+    // console.log (newPalette)
+    this.setState({palette: [...this.state.palette, newPalette]}, 
+      this.syncLocalStorage)
+
+  }
+
+  syncLocalStorage() {
+    
+    window.localStorage.setItem(
+      "palettes",
+      JSON.stringify(this.state.palette)
+    );
   }
 
   render(){
