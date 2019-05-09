@@ -18,7 +18,7 @@ export default {
         },
         [sizes.down('lg')]: {
             width: "25%",
-            height: props => props.showFullPalette? "20%" :"50%"
+            height: props => props.showFullPalette? "25%" :"33.3%"
         },
         [sizes.down('md')]: {
             width: "50%",
@@ -138,7 +138,10 @@ export default {
             textAlign: "center",
             textTransform: "uppercase",
             marginBottom: "0",
-            padding: "1rem"
+            padding: "1rem",
+            [sizes.down("xs")]:{
+                fontSize: "5rem"
+            }
             },
 
         "& p": {
