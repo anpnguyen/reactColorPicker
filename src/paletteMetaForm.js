@@ -31,7 +31,7 @@ class PaletteMetaForm extends Component {
     constructor(props){
         super(props);
         this.state = {
-            open: false,
+            open: true,
             newPaletteName: ""
         };
     this.handleChange = this.handleChange.bind(this)
@@ -65,40 +65,43 @@ class PaletteMetaForm extends Component {
         const {palette} = this.props
         const {newPaletteName} = this.state
     return (
-      <div>
-        <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
-          Open form dialog
-        </Button>
+     
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              To subscribe to this website, please enter your email address here. We will send
-              updates occasionally.
-            </DialogContentText>
-                
-                <ValidatorForm onSubmit= {() => this.props.handleSubmit(newPaletteName)}>
-                <Button
-                variant="contained"
-                color="primary"
-                type="submit"
-                >Save Palette
-              </Button>
+            
+            <DialogTitle id="form-dialog-title">Choose A Palette Name</DialogTitle>
+          
+            <ValidatorForm 
+                onSubmit= {() => this.props.handleSubmit(newPaletteName)}>
+            <DialogContent>
+                <DialogContentText>
+                Please choose a Palette name
+                </DialogContentText>
                     
-                <TextValidator 
-                    name = "newPaletteName"
-                    value = {newPaletteName}
-                    onChange = {this.handleChange}
-                    placeholder = "This is me"
-                    validators={["required" ,"isPaletteNameUnique" ]}
-                    errorMessages={['this field is required' , "unique plate" ]}
-                    />
-                </ValidatorForm>
-          </DialogContent>
+                    
+                <Button
+                    variant="contained"
+                    color="primary"
+                    type="submit"
+                    >Save Palette
+                </Button>
+                        
+                    <TextValidator 
+                        name = "newPaletteName"
+                        value = {newPaletteName}
+                        onChange = {this.handleChange}
+                        placeholder = "This is me"
+                        validators={["required" ,"isPaletteNameUnique" ]}
+                        errorMessages={['this field is required' , "unique plate" ]}
+                        fullWidth
+                        margin ="normal"
+                        />
+                    
+            </DialogContent>
+          
 
           <DialogActions>
             <Button onClick={this.handleClose} color="primary">
@@ -108,8 +111,11 @@ class PaletteMetaForm extends Component {
               Subscribe
             </Button>
           </DialogActions>
+
+          </ValidatorForm>
+          
         </Dialog>
-      </div>
+      
     );
   }
 }
