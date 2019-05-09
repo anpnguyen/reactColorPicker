@@ -19,6 +19,7 @@ import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import {Link} from 'react-router-dom'
 import PaletteMetaForm from './paletteMetaForm'
 import styles from './styles/PaletteFormNavStyles'
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 
 
@@ -83,7 +84,7 @@ class PaletteFormNav extends Component{
               onClick={this.props.handleDrawerOpen}
               className={classNames(classes.menuButton, open && classes.hide)}
             >
-              <MenuIcon />
+              <ChevronRightIcon />
             </IconButton>
             <Typography variant="h6" color="inherit" noWrap>
               Create A Palette
