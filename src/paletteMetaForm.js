@@ -1,0 +1,117 @@
+import React, {Component} from 'react';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import classNames from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+// import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+// import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+// import {ChromePicker} from 'react-color'
+
+// import DraggableColorBox from './draggableColorBox'
+import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+// import DraggableColorList from './DraggableColorList'
+// import arrayMove from 'array-move';
+import {Link} from 'react-router-dom'
+
+
+class PaletteMetaForm extends Component {
+
+    constructor(props){
+        super(props);
+        this.state = {
+            open: false,
+            newPaletteName: ""
+        };
+    this.handleChange = this.handleChange.bind(this)
+}
+
+  handleClickOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
+  handleChange(evt){
+       
+    this.setState({ [evt.target.name]: evt.target.value})
+    
+  }
+
+
+  componentDidMount() {
+
+    ValidatorForm.addValidationRule('isPaletteNameUnique', (value) => {
+      let obj = this.props.palette.find( palette => palette.paletteName.toLowerCase() === this.state.newPaletteName.toLowerCase())
+      return (!obj?  true:  false)
+    })
+
+  }
+
+  render() {
+        const {palette} = this.props
+        const {newPaletteName} = this.state
+    return (
+      <div>
+        <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
+          Open form dialog
+        </Button>
+        <Dialog
+          open={this.state.open}
+          onClose={this.handleClose}
+          aria-labelledby="form-dialog-title"
+        >
+          <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              To subscribe to this website, please enter your email address here. We will send
+              updates occasionally.
+            </DialogContentText>
+                
+                <ValidatorForm onSubmit= {() => this.props.handleSubmit(newPaletteName)}>
+                <Button
+                variant="contained"
+                color="primary"
+                type="submit"
+                >Save Palette
+              </Button>
+                    
+                <TextValidator 
+                    name = "newPaletteName"
+                    value = {newPaletteName}
+                    onChange = {this.handleChange}
+                    placeholder = "This is me"
+                    validators={["required" ,"isPaletteNameUnique" ]}
+                    errorMessages={['this field is required' , "unique plate" ]}
+                    />
+                </ValidatorForm>
+          </DialogContent>
+
+          <DialogActions>
+            <Button onClick={this.handleClose} color="primary">
+              Cancel
+            </Button>
+            <Button onClick={this.handleClose} color="primary">
+              Subscribe
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
+    );
+  }
+}
+
+export default PaletteMetaForm

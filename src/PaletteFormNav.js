@@ -17,6 +17,7 @@ import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 // import DraggableColorList from './DraggableColorList'
 // import arrayMove from 'array-move';
 import {Link} from 'react-router-dom'
+import PaletteMetaForm from './paletteMetaForm'
 
 const drawerWidth = 400;
 const styles = theme => ({
@@ -74,19 +75,19 @@ class PaletteFormNav extends Component{
         
       }
 
-      componentDidMount() {
+    // componentDidMount() {
+
+    //   ValidatorForm.addValidationRule('isPaletteNameUnique', (value) => {
+    //     let obj = this.props.palette.find( palette => palette.id.toLowerCase() === this.state.newPaletteName.toLowerCase())
+    //     return (!obj?  true:  false)
+    //   })
   
-        ValidatorForm.addValidationRule('isPaletteNameUnique', (value) => {
-          let obj = this.props.palette.find( palette => palette.id.toLowerCase() === this.state.newPaletteName.toLowerCase())
-          return (!obj?  true:  false)
-        })
-    
-      }
+    // }
 
 
     render(){
 
-        const {classes, open} = this.props
+        const {classes, open, palette, handleSubmit} = this.props
         const {newPaletteName} = this.state
         return(
 
@@ -116,6 +117,11 @@ class PaletteFormNav extends Component{
 
           </Toolbar>
 
+          <PaletteMetaForm
+            palette={palette}
+            handleSubmit= {handleSubmit}
+          />
+
 
           <div className={classes.navBtn}>
               <Link to="/">
@@ -126,24 +132,14 @@ class PaletteFormNav extends Component{
                   >goback
                   </Button>
               </Link>
-              <Button
+              {/* <Button
                 variant="contained"
                 color="primary"
                 type="submit"
                 >Save Palette
-              </Button>
+              </Button> */}
 
-              <ValidatorForm onSubmit= {() => this.props.handleSubmit(newPaletteName)}>
-              
-                
-                <TextValidator 
-                  name = "newPaletteName"
-                  value = {newPaletteName}
-                  onChange = {this.handleChange}
-                  validators={["required" ,"isPaletteNameUnique" ]}
-                  errorMessages={['this field is required' , "unique plate" ]}
-                  />
-              </ValidatorForm>
+             
             </div>
         </AppBar>
 
