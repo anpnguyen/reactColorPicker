@@ -2,7 +2,7 @@ import React, {Component } from 'react';
 
 
 // import classNames from 'classnames';
-// import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 // import Drawer from '@material-ui/core/Drawer';
 
 // import Typography from '@material-ui/core/Typography';
@@ -19,6 +19,25 @@ import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 // import arrayMove from 'array-move';
 // import PaletteFormNav from './PaletteFormNav'
 
+
+const styles = {
+  picker: {
+    width: "100% !important",
+    marginTop: "2rem"
+  },
+
+  addColor:{
+    width: "100%",
+    padding: "1rem",
+    marginTop: "1rem",
+    fontSize: "2rem"
+
+  },
+  colorNameInput: {
+    width: "100%",
+    height: "70px"
+  }
+}
 
 class ColorPickerForm extends Component{
 
@@ -84,18 +103,20 @@ class ColorPickerForm extends Component{
 
 
     render(){
-        const {paletteIsFull} = this.props
+        const {paletteIsFull, classes} = this.props
         const {currentColor, newColorName} = this.state
         
         return(
             <div>
             <ChromePicker 
+              className={classes.picker}
               color={currentColor} 
               onChangeComplete={this.updateCurrentColor}/>
             
 
             <ValidatorForm onSubmit= {this.handleAddNewColor}>
               <Button 
+                className={classes.addColor}
                 variant="contained" 
                 color= "default" 
                 style={{background: currentColor}}
@@ -105,7 +126,11 @@ class ColorPickerForm extends Component{
                 > {paletteIsFull? "palette full": "add Color"}
               </Button>
               <TextValidator 
+                className={classes.colorNameInput}
                 name= "newColorName"
+                variant = "filled"
+                margin = "normal"
+                placeholder = "Add color name"
                 value = {newColorName}
                 onChange = {this.handleChange}
                 validators={["required", "isColorNameUnique", 'isColorUnique' ]}
@@ -120,4 +145,4 @@ class ColorPickerForm extends Component{
 
 }
 
-export default ColorPickerForm
+export default withStyles(styles)(ColorPickerForm)

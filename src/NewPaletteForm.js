@@ -57,6 +57,8 @@ const styles = theme => ({
   },
   drawerPaper: {
     width: drawerWidth,
+    display: "flex",
+    alignItems: "center"
   },
   drawerHeader: {
     display: 'flex',
@@ -82,6 +84,30 @@ const styles = theme => ({
     }),
     marginLeft: 0,
   },
+
+  buttons: {
+    width: "100%"
+
+  },
+
+  button: {
+    width: "50%"
+
+  },
+
+  container: {
+    width: "90%",
+    display: "flex",
+    flexDirection: "column",
+    // backgroundColor: "red",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100%"
+
+
+
+
+  }
 });
 
 class NewPaletteForm extends Component {
@@ -108,13 +134,7 @@ class NewPaletteForm extends Component {
   }
 
 
-  addRandomColor(){
-    const allColors = this.props.palette.map(p => p.colors).flat()
-    let rand = Math.floor(Math.random() * allColors.length)
-    let randomColor = allColors[rand]
-    // console.log(randomColor)
-    this.setState({colors: [...this.state.colors, randomColor]})
-  }
+
 
   onSortEnd = ({oldIndex, newIndex}) => {
     this.setState(({colors}) => ({
@@ -122,28 +142,7 @@ class NewPaletteForm extends Component {
     }))
   };
   
-  clearColors(){
-    this.setState({colors: []})
-  }
 
-  // componentDidMount() {
-    
-  //   ValidatorForm.addValidationRule('isColorNameUnique', (value) => {
-  //     let obj = this.state.colors.find( object => object.name.toLowerCase() === value.toLowerCase())
-  //     return (!obj?  true:  false)
-  //   })
-
-  //   ValidatorForm.addValidationRule('isColorUnique', (value) => {
-  //     let obj = this.state.colors.find( object => object.color.toLowerCase() === this.state.currentColor.toLowerCase())
-  //     return (!obj?  true:  false)
-  //   })
-
-  //   // ValidatorForm.addValidationRule('isPaletteNameUnique', (value) => {
-  //   //   let obj = this.props.palette.find( palette => palette.id.toLowerCase() === this.state.newPaletteName.toLowerCase())
-  //   //   return (!obj?  true:  false)
-  //   // })
-
-  // }
 
 // ==========================
 // handle Change on forms
@@ -161,10 +160,19 @@ class NewPaletteForm extends Component {
     this.setState({colors: [...this.state.colors, newColorObject], newColorName: ""})
   }
 
+  addRandomColor(){
+    const allColors = this.props.palette.map(p => p.colors).flat()
+    let rand = Math.floor(Math.random() * allColors.length)
+    let randomColor = allColors[rand]
+    // console.log(randomColor)
+    this.setState({colors: [...this.state.colors, randomColor]})
+  }
 
-  // updateCurrentColor(newColor){
-  //   this.setState({currentColor: newColor.hex})
-  // }
+  clearColors(){
+    this.setState({colors: []})
+  }
+
+
 
   handleSubmit(newPaletteName){
     const newPallete = {
@@ -214,15 +222,8 @@ class NewPaletteForm extends Component {
           open={open} 
           handleSubmit={this.handleSubmit} 
           palette={palette}
-          handleDrawerOpen = {this.handleDrawerOpen}/>
-
-
-
-
-
-
-
-
+          handleDrawerOpen = {this.handleDrawerOpen}
+        />
 
         <Drawer
           className={classes.drawer}
@@ -235,48 +236,71 @@ class NewPaletteForm extends Component {
         >
         
         
-          <div className={classes.drawerHeader}>
-          This is the header of the Menu
-            <IconButton onClick={this.handleDrawerClose}>
-              <ChevronLeftIcon /> 
-            </IconButton>
+        <div className={classes.drawerHeader}>
+          {/* This is the header of the Menu */}
+          <IconButton onClick={this.handleDrawerClose}>
+            <ChevronLeftIcon /> 
+          </IconButton>
+        </div>
+
+        <Divider />
+        {/* This is the top part of the menu */}
+        <Divider />
+        
+
+        <div className={classes.container}>
+          <Typography variant="h4" gutterBottom>Design Your Palette</Typography>
+
+          <div className={classes.buttons}>
+            <Button 
+              variant="contained" 
+              color="secondary" 
+              onClick={this.clearColors}
+              className= {classes.button}
+            > Clear Palette 
+            </Button>
+
+            <Button 
+              variant="contained" 
+              color="primary" 
+              onClick={this.addRandomColor} 
+              className= {classes.button}
+              disabled= {paletteIsFull}
+            > Random Color 
+            </Button>
+
           </div>
-          <Divider />
-          This is the top part of the menu
-          <Divider />
-          <Typography variant="h4">Design Your Palette</Typography>
-          <div>
-            <Button variant="contained" color="secondary" onClick={this.clearColors}> Clear Palette </Button>
-            <Button variant="contained" color="primary" onClick={this.addRandomColor} disabled= {paletteIsFull}> Random Color </Button>
-          </div>
 
 
 
-            <ColorPickerForm 
-              paletteIsFull = {paletteIsFull}
-              currentColor = {currentColor}
-              addNewColor = {this.addNewColor}
-              updateCurrentColor= {this.updateCurrentColor}
-              colors = {colors}/>
+          <ColorPickerForm 
+            paletteIsFull = {paletteIsFull}
+            currentColor = {currentColor}
+            addNewColor = {this.addNewColor}
+            updateCurrentColor= {this.updateCurrentColor}
+            colors = {colors}
+          />
+
+        </div>
           
         </Drawer>
-        <main
-          className={classNames(classes.content, {
+          <main
+            className={classNames(classes.content, {
             [classes.contentShift]: open,
           })}
-        >
-          <div className={classes.drawerHeader} />
+          >
+            <div className={classes.drawerHeader} />
 
-            <DraggableColorList 
-              colors={this.state.colors}
-              deleteColor = {this.deleteColor}
-              axis = "xy"
-              onSortEnd = {this.onSortEnd}
-            />
+              <DraggableColorList 
+                colors={this.state.colors}
+                deleteColor = {this.deleteColor}
+                axis = "xy"
+                onSortEnd = {this.onSortEnd}
+              />
             
           
           
-        </main>
+          </main>
       </div>
     );
   }
