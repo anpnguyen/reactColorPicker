@@ -68,6 +68,7 @@ class PaletteMetaForm extends Component {
     //   console.log(emoji.native)
       let paletteName = {paletteName: this.state.newPaletteName, emoji: emoji.native}
       this.props.handleSubmit (paletteName)
+      this.setState({openEmoji:false})
   }
 
   componentDidMount() {
