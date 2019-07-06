@@ -29,7 +29,6 @@ class ColorBox extends Component {
       showFullPalette
     } = this.props;
     const copied = this.state.copied;
-    // const isDark = (chroma(background).luminance() <= 0.5)
 
     return (
       <CopyToClipboard text={background} onCopy={this.changeCopyState}>
@@ -57,7 +56,7 @@ class ColorBox extends Component {
 
           {showFullPalette && (
             <Link
-              exact
+              exact ='true'
               to={`/palette/${paletteId}/${colorId}`}
               onClick={e => e.stopPropagation()}
             >

@@ -19,7 +19,7 @@ export default {
     justifyContent: "center",
     backgroundColor: "#77aa77",
     backgroundImage: `url(${bg})`,
-    backgroundSize: "100%",
+    backgroundSize: "cover",
     overflowX: "none",
     overflowY: "scroll",
     width: "100%"

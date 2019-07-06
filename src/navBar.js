@@ -46,7 +46,7 @@ class NavBar extends Component{
             <header className={classes.NavBar}> 
             
                 <div className={classes.logo}>
-                    <Link exact to="/">ReactColorPicker</Link>
+                    <Link exact='true' to="/">ReactColorPicker</Link>
                 </div>
                  
                 {showingAllColors && ( 
