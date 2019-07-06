@@ -1,30 +1,25 @@
 export default {
+  Palette: {
+    height: "95vh",
+    display: "flex",
+    flexDirection: "column"
+  },
 
-    Palette: {
-        height: '95vh',
-        display:'flex',
-        flexDirection: 'column'
-    },
+  PaletteColors: {
+    height: "90%"
+  },
 
-    PaletteColors: {
-        height: "90%"
-    },
+  PaletteFooter: {
+    backgroundColor: "white",
+    height: "5vh",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    fontWeight: "bold"
+  },
 
-    PaletteFooter : {
-        backgroundColor: 'white',
-        height: '5vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-        fontWeight: 'bold'
-    
-    },
-    
-    emoji: {
-        fontSize: "1rem",
-        margin: "0 1rem"
-    }
-
-
-    
-}
+  emoji: {
+    fontSize: "1rem",
+    margin: "0 1rem"
+  }
+};

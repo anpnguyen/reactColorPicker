@@ -19,7 +19,7 @@ import arrayMove from 'array-move';
 import PaletteFormNav from './PaletteFormNav'
 import ColorPickerForm from './colorPickerForm'
 import styles from './styles/newPalleteFormStyles'
-
+import seedColors from './seedColors'
 
 const drawerWidth = 400;
 
@@ -35,7 +35,7 @@ class NewPaletteForm extends Component {
       this.state = {
         open: true,
         currentColor: "teal",
-        colors: this.props.palette[0].colors,
+        colors: seedColors[0].colors,
         newColorName: "",
         newPaletteName: ""
     };
