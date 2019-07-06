@@ -1,15 +1,12 @@
 import React, { Component } from "react";
 import classNames from "classnames";
 import { withStyles } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
 import Button from "@material-ui/core/Button";
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { Link } from "react-router-dom";
 import PaletteMetaForm from "./paletteMetaForm";
 import styles from "./styles/PaletteFormNavStyles";
@@ -41,7 +38,6 @@ class PaletteFormNav extends Component {
 
   render() {
     const { classes, open, palette, handleSubmit } = this.props;
-    const { newPaletteName } = this.state;
     return (
       <div className={classes.root}>
         <CssBaseline />

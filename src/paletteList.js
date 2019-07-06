@@ -4,7 +4,6 @@ import { withStyles } from "@material-ui/styles";
 import { Link } from "react-router-dom";
 import styles from "./styles/paletteListStyles";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import Button from "@material-ui/core/Button";
 import Avatar from "@material-ui/core/Avatar";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";

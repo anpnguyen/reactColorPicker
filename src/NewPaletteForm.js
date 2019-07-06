@@ -1,28 +1,18 @@
 import React, {Component } from 'react';
-// import {Link} from 'react-router-dom'
-
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-// import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import {ChromePicker} from 'react-color'
 import Button from '@material-ui/core/Button';
-// import DraggableColorBox from './draggableColorBox'
-import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
-// import { blue } from '@material-ui/core/colors';
 import DraggableColorList from './DraggableColorList'
 import arrayMove from 'array-move';
 import PaletteFormNav from './PaletteFormNav'
 import ColorPickerForm from './colorPickerForm'
 import styles from './styles/newPalleteFormStyles'
 import seedColors from './seedColors'
-
-const drawerWidth = 400;
-
 
 
 class NewPaletteForm extends Component {
@@ -122,7 +112,7 @@ class NewPaletteForm extends Component {
 
 
   render() {
-    const { classes, theme, palette } = this.props;
+    const { classes, palette } = this.props;
     const { open , currentColor, colors} = this.state;
     const paletteIsFull = this.state.colors.length >= this.props.maxColors
 

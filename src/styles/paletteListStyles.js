@@ -13,7 +13,6 @@ export default {
   },
 
   root: {
-    backgroundColor: "blue",
     height: "100vh",
     display: "flex",
     alignItems: "flex-start",
@@ -21,7 +20,8 @@ export default {
     backgroundColor: "#77aa77",
     backgroundImage: `url(${bg})`,
     backgroundSize: "100%",
-    overflow: "scroll",
+    overflowX: "none",
+    overflowY: "scroll",
     width: "100%"
   },
   container: {
