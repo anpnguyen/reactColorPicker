@@ -81,14 +81,14 @@ class PaletteMetaForm extends Component {
           <ValidatorForm onSubmit={this.showEmojiPicker}>
             <DialogContent>
               <DialogContentText>
-                Please choose a Palette name
+                Please choose a name for your new palette.
               </DialogContentText>
 
               <TextValidator
                 name="newPaletteName"
                 value={newPaletteName}
                 onChange={this.handleChange}
-                placeholder="This is me"
+                placeholder="Palette Name "
                 validators={["required", "isPaletteNameUnique"]}
                 errorMessages={["this field is required", "unique plate"]}
                 fullWidth
@@ -97,7 +97,10 @@ class PaletteMetaForm extends Component {
             </DialogContent>
 
             <DialogActions>
-              <Button onClick={hideForm} color="primary">
+              <Button onClick={hideForm} 
+                color="secondary"
+                variant="contained"
+                >
                 Cancel
               </Button>
 
@@ -105,7 +108,7 @@ class PaletteMetaForm extends Component {
                 variant="contained"
                 color="primary"
                 type="submit"
-                // onClick= {this.showEmojiPicker}
+                
               >
                 Save Palette
               </Button>
