@@ -69,7 +69,6 @@ class NewPaletteForm extends Component {
     const allColors = this.props.palette.map(p => p.colors).flat()
     let rand = Math.floor(Math.random() * allColors.length)
     let randomColor = allColors[rand]
-    // console.log(randomColor)
     this.setState({colors: [...this.state.colors, randomColor]})
   }
 
@@ -120,7 +119,6 @@ class NewPaletteForm extends Component {
       <div className={classes.root}>
         
         <PaletteFormNav 
-          // classes={classes} 
           open={open} 
           handleSubmit={this.handleSubmit} 
           palette={palette}

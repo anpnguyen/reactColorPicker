@@ -11,8 +11,9 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ListItemText from "@material-ui/core/ListItemText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Dialog from "@material-ui/core/Dialog";
-import PersonIcon from "@material-ui/icons/Person";
 import Button from '@material-ui/core/Button';
+import CheckIcon from "@material-ui/icons/Check";
+import CloseIcon from "@material-ui/icons/Close";
 
 class PaletteList extends Component {
   constructor(props) {
@@ -62,20 +63,20 @@ class PaletteList extends Component {
             </Button>
             </Link>
             <Dialog open={this.state.open} onClose={this.closeDialog}>
-              <DialogTitle>This is the title</DialogTitle>
+              <DialogTitle>Are you sure you want to delete this palette?</DialogTitle>
               <List>
                 <ListItem button onClick={this.handleDelete}>
                   <ListItemAvatar>
-                    <Avatar style={{ color: "blue" }}>
-                      <PersonIcon />
+                    <Avatar style={{ color: '#1E88E5', backgroundColor: '#BBDEFB' }}>
+                      <CheckIcon />
                     </Avatar>
                   </ListItemAvatar>
-                  <ListItemText>Delete Me</ListItemText>
+                  <ListItemText>Delete Palette</ListItemText>
                 </ListItem>
                 <ListItem button onClick={this.closeDialog}>
                   <ListItemAvatar>
-                    <Avatar style={{ color: "red" }}>
-                      <PersonIcon />
+                    <Avatar style={{ color: '#e53935', backgroundColor: '#ffcdd2' }}>
+                      <CloseIcon />
                     </Avatar>
                   </ListItemAvatar>
                   <ListItemText>Cancel</ListItemText>
