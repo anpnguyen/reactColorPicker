@@ -12,6 +12,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Dialog from "@material-ui/core/Dialog";
 import PersonIcon from "@material-ui/icons/Person";
+import Button from '@material-ui/core/Button';
 
 class PaletteList extends Component {
   constructor(props) {
@@ -50,7 +51,16 @@ class PaletteList extends Component {
         <div className={classes.container}>
           <div className={classes.nav}>
             <h1>ReactColors</h1>
-            <Link to="/palette/new">Create Palette</Link>
+            <Link to="/palette/new" className={classes.clear}>  
+            <Button 
+              variant="contained" 
+              color="primary" 
+              className={classes.button}
+            >  CREATE PALETTE
+              
+
+            </Button>
+            </Link>
             <Dialog open={this.state.open} onClose={this.closeDialog}>
               <DialogTitle>This is the title</DialogTitle>
               <List>

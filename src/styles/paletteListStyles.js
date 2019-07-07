@@ -23,6 +23,7 @@ export default {
     overflowX: "none",
     overflowY: "scroll",
     width: "100%"
+    
   },
   container: {
     width: "50%",
@@ -60,5 +61,12 @@ export default {
       gridTemplateColumns: "repeat(1,100%)",
       gridGap: "1.3rem"
     }
+  },
+  clear:{
+    textDecoration: 'none',
+    "& a":{
+      textDecoration: 'none'
+    }
+    
   }
 };
