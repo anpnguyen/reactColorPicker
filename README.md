@@ -7,4 +7,4 @@ React Color Picker is a single-page react application that helps users design th
 **Technologies:** 
 React, HTML5, CSS3 and JavaScript ES6+
 
-![React Color Picker ](https://github.com/PleatherShaman/portfolio/blob/master/images/reactcolor.png "React Color Picker )
+![React Color Picker](https://github.com/PleatherShaman/portfolio/blob/master/images/reactcolor.png "React Color Picker" )
